@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Sample">
+	<typeAlias alias="sample" type="egovframework.sample.service.SampleVO"/>
+	<typeAlias alias="searchVO" type="egovframework.sample.service.SampleDefaultVO"/>
+	<resultMap class="sample" id="sampleResult">
+		<result property="id" column="ID"/>
+		<result property="title" column="TITLE"/>
+		<result property="regUser" column="REG_USER"/>
+		<result property="content" column="CONTENT"/>
+		<result property="regDate" column="REG_DATE"/>
+		<result property="readCount" column="READ_CNT"/>
+	</resultMap>
+	
+	<insert id="SampleDAO.insertSample">
+		insert into sample values(
+			#id#,
+			#title#,
+			#regUser#,
+			#content#,
+			NOW(),
+			0
+		)
+	</insert>
+	
+	<update id="SampleDAO.updateSample">
+		update sample
+		set
+		TITLE=#title#,
+		REG_USER=#regUser#,
+		CONTENT=#content#
+		where ID=#id#
+	</update>
+	
+	<delete id="SampleDAO.deleteSample">
+		delete from sample
+		where ID=#id#
+	</delete>
+	
+	<select id="SampleDAO.selectSample" resultMap="sampleResult">
+		select ID,TITLE,REG_USER,CONTENT,REG_DATE,READ_CNT
+		from sample
+		where ID=#id#
+	</select>
+	
+	<select id="SampleDAO.selectSampleList" resultMap="sampleResult">
+		select * from sample
+				
+			    order by id desc
+
+	</select>
+	
+	
+	<update id="SampleDAO.viewCount">
+		update sample
+		set
+		READ_CNT = READ_CNT + 1
+		where ID=#id#
+	</update>
+	
+	
+
+</sqlMap>

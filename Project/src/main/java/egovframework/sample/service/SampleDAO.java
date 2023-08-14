@@ -1,0 +1,21 @@
+package egovframework.sample.service;
+
+import java.util.List;
+
+public interface SampleDAO {
+
+	void insertSample(SampleVO vo) throws Exception;
+
+	void updateSample(SampleVO vo) throws Exception;
+
+	void deleteSample(SampleVO vo) throws Exception;
+
+	SampleVO selectSample(SampleVO vo) throws Exception;
+
+	List<SampleVO> selectSampleList(SampleVO vo) throws Exception;
+
+	//조회수 증가 처리
+	void viewCount(String id) throws Exception;
+
+	
+}
